@@ -1,0 +1,31 @@
+doctype html
+html
+  head
+    script(src='/jquery/jquery-2.1.1.js')
+    script(src='/bootstrap/js/bootstrap.min.js')
+    script(src='/bootstrap/css/bootstrap.min.css')
+    script(src='/socket.io/socket.io.js')
+    script.
+      var socket = io(); 
+      $(document).ready(function () {
+          socket.on('status', function(msg) {
+              console.log('socket received', msg)
+              $('#msg').html(msg)
+          })
+          socket.emit('message', 'document ready')
+          $('#start').click(function(e) { socket.emit('message', 'start') })
+          $('#stop').click(function(e) { socket.emit('message', 'stop') })
+          $('#restart').click(function(e) { socket.emit('message', 'restart') })
+          $('#shutdown').click(function(e) { socket.emit('message', 'shutdown') })
+          $('a').mousedown(function(e) { e.preventDefault() })
+      })
+
+  body
+    p Controller
+    p Actions:
+      a#start [StartServer]
+      a#stop [StopServer]
+      a#restart [RestartApp]
+      a#shutdown [ShutdownApp]
+    p Messages:
+    #msg

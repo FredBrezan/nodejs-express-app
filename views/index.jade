@@ -1,0 +1,22 @@
+html
+  head
+    block head
+      != inc('/jquery/jquery-2.1.1.js')
+      != inc('/bootstrap/js/bootstrap.min.js')
+      != inc('/bootstrap/css/bootstrap.min.css')
+      != inc('/ckeditor/ckeditor.js')
+      != inc('/ckeditor/adapters/jquery.js')
+    style.
+      #edblk { width: 100%; min-height: 200px }
+    script.
+      function whenEditorReady() {
+      }
+      function init() {
+        console.log('document ready!')
+        $('#edblk').ckeditor(whenEditorReady, {customConfig: '/ckcfg.js'})
+      }
+      $(document).ready(init)
+    
+  body
+    h1 Welcome!
+    div#edblk(contenteditable='true')

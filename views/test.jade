@@ -1,0 +1,12 @@
+html
+  head
+    block scripts
+      script(href='../contrib/bootstrap/js/bootstrap.min.js')
+    block css
+      style(href='../contrib/bootstrap/css/bootstrap.min.js')
+  body
+    h1 Welcome!
+    - JadeLink = a('Jade', {href:'http://jade-lang.com/'})   
+    p Welcome to my first !{JadeLink} page.    
+    p Welcome to my first <a href="http://jade-lang.com/">Jade</a> page.
+

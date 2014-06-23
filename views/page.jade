@@ -1,0 +1,11 @@
+extend base
+
+append head
+    case editor
+      when 'ckeditor'
+        != inc('/ckeditor/ckeditor.js')
+        != inc('/ckeditor/adapters/jquery.js')
+      when 'tinymce'
+      default
+        != inc('/tinymce/tinymce_4.0.28/js/tinymce/tinymce.min.js')
+        != inc('/cfg-tinymce.js')

@@ -1,0 +1,58 @@
+pages = [
+
+
+    'notes': {
+        content: 'page_uid'
+        subpages: [
+            { 'subpage-1': }
+            { ... }
+        ]
+    }
+]
+
+pagesdb = {
+    'path': 'page_uid',
+    ...
+}
+
+<page> = { 
+    content: 'page_uid',
+    title: 'Page Title',
+    subpages: [ subpage-1, ... ]
+}
+
+
+rootpage = {
+    content: 'page_uid',
+    subpages: [ ... ]
+}
+
+
+A Page:
+=======
+    - is based on a layout
+    - is made of blocks (as with Jimdo)
+    - a block is an object with a type { type: '...', ... }
+        - type 'htmltext' -> content = escaped version of HTML content (quotes)
+        - other types: 'widget', 'markdown', ...
+
+* Get Page
+==========
+    - in response to router request to '/pages'
+    - take path 
+    - check path in pagesdb
+        - if exists: serve page
+        - otherwise: redirect to page create /action/page/create
+    
+* Pages Creation
+================
+    - Input: path, title
+    - Assert:
+        - data.pagespaths[path] is undefined
+    - get new page_uid
+    - page = new Page(page_uid, title)
+    - set data.pagespaths[path] = page_uid
+    - create file 'data/pages/{page_uid}/current' with content = page.asJSON()
+    - parent = getParentPage(path)
+    - parent.subpages.append(page)
+    
