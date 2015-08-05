@@ -1,0 +1,10 @@
+mextend base
+append body
+    h1 Internal Server Error 
+    p
+      | Damn it! You just got a pretty nasty error, the kind of one that make the whole app unusable.<br>
+      | Now, the only thing to do is to fix the ugly bug that broke everything, and then restart the app.
+    p <b>Here is the error context:</b>
+    pre= err
+    button.appctrl#appctrl-restart(type='button') Restart
+    button.appctrl#appctrl-shutdown(type='button') Shutdown

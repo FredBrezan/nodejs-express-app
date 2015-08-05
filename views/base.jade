@@ -1,18 +1,12 @@
 doctype html
 html
   head
+    link(href='/bootstrap/css/bootstrap.min.css', rel="stylesheet", type="text/css")
+    script(src='/jquery/jquery-2.1.1.js')
+    script(src='/bootstrap/js/bootstrap.min.js')
+    script(src='/socket.io/socket.io.js')
+    script(src='/core.js')
     block head
-      != inc('/jquery/jquery-2.1.1.js')
-      != inc('/bootstrap/js/bootstrap.min.js')
-      != inc('/bootstrap/css/bootstrap.min.css')
-    != inc('/core.js')
-    style.
-      #edblk { width: 100%; min-height: 200px }
-      #edtoolbar { float: right; }
     
   body
-    div#edtoolbar
-    h1 -
-    h1 Welcome!
-    div#edblk 
-    //(contenteditable='true')
+    block body

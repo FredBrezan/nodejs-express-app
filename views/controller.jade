@@ -1,9 +1,9 @@
 doctype html
 html
   head
+    != inc('/bootstrap/css/bootstrap.min.css')
     script(src='/jquery/jquery-2.1.1.js')
     script(src='/bootstrap/js/bootstrap.min.js')
-    script(src='/bootstrap/css/bootstrap.min.css')
     script(src='/socket.io/socket.io.js')
     script.
       var socket = io(); 
@@ -21,6 +21,7 @@ html
       })
 
   body
+    //- link1 = link('Google', {href: 'http://google.com'})
     p Controller
     p Actions:
       a#start [StartServer]
@@ -28,4 +29,22 @@ html
       a#restart [RestartApp]
       a#shutdown [ShutdownApp]
     p Messages:
+    p.class1.class2#id3.class3.
+      | Hello <span>World</span>
+      a(href='/main').special#main-link
+        | Main
+        | Page
+      img(src='/images/logo.png')#logo
+    p#id1.content.
+      The 
+      End.
+    #main(data-name='Lee')
+    - var foo = '<tag>bar</tag>'    
+    //- p!= $$$.dump(this)
+    p
+      - var y = $$
+      - var x = (y == undefined ? 'self=undefined' : y)
+      = x
+      - for (x in $$)
+        span #{x} <br>
     #msg

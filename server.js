@@ -13,13 +13,13 @@ var JadeLocals = {
     pretty  : true,
     fmt     : util.format,
     editor  : 'tinymce',
-    
-    a: function(text, opts) { 
-        var s = ''; 
-        for (var i in opts) s += util.format(' %s="%s"', i, opts[i]); 
-        return util.format('<a%s>%s</a>', s, text); 
+
+    a: function(text, opts) {
+        var s = '';
+        for (var i in opts) s += util.format(' %s="%s"', i, opts[i]);
+        return util.format('<a%s>%s</a>', s, text);
     },
-    
+
     inc: function(incpath) {
         var type = path.extname(incpath)
         //console.log(incpath)
@@ -29,7 +29,7 @@ var JadeLocals = {
             default: return util.format('<!-- UNKOWN INCLUDE TYPE %s for %s -->\n', type, incpath)
         }
     },
-    
+
     dump: function() {
         s = ''
         for (x in this) s += (x + " ");
@@ -39,12 +39,12 @@ var JadeLocals = {
 //##################################################################################################
 
 swe.Class("PageController").implementation = {
-    
+
     getPage: function(pagePath) {
         if (pagePath == '/') return '';
         else return null;
     }
-    
+
 }
 
 //##################################################################################################
@@ -57,14 +57,15 @@ swe.Class("Server").implementation = {
         this.server = null;
         this.pageController = new PageController()
     },
-    
+
     initViewEngine: function() {
-        this.app.set('view engine', 'jade');
-        this.app.locals.module = module;
-        this.app.locals.util = util;
-        for (x in JadeLocals) this.app.locals[x] = JadeLocals[x];
+        //var jlocals = new JadeLocals()
+        this.app.set('view engine', 'jade')
+        this.app.locals.module = module
+        this.app.locals.util = util
+        //for (x in jlocals) this.app.locals[x] = jlocals[x];
     },
-    
+
     initRouteForPages: function() {
         var self = this;
         var router = express.Router()

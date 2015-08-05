@@ -1,0 +1,55 @@
+In Jade, each line starts with a tag, followod by its text content. Tag nesting (hierarchy) is achieved by indentation like in Python:
+
+    html
+      head
+      body
+        h1 Hello !
+        p This is may text.
+        ul
+          li item 1
+          li item 2
+        p Bye-bye!
+        
+> tag's class is preceded by a dot. There can be several classes. 
+A tag's id is preceded by a hashtag. There can be only one ID. 
+When no tag is specified, DIV is implied.
+Attributes are placed between parenthesis.
+
+
+    p#par1.container.info                           | <p id="par1" class="container info"></p>
+    #myblock.content                                | <div id="myblock" class="content"></div>
+    a(href='/main').special#main-link Main Page     | <a href="/main" id="main-link" class="special">Main Page</a>
+    img(src='/images/logo.png')#logo                | <img src="/images/logo.png" id="logo"/>    
+    #main(data-name='Lee')	                        | <div id="main" data-name="Dave"></div>
+    p(id='main', class='highlight special')         | <p id="main" class="highlight special"></p>    
+
+Regular text content is appended using the pipe (|) character at the beginning of line, and following the same indentation scheme than nested tags. Extra spaces and newlines are preserved. Text blocks can be entered using the dot character after a tag specification, then all the following indented lines are interpreted as text content.
+
+   p#par1.content.                                  | <p id="par1" class="content">Hello World</p>
+     Hello, World!
+     Bye.
+
+___________________________________________________________________________________________________________________________________
+
+Coding
+
+Jade supports three kind of executable code: unbuffered code, buffered code, variable expansion
+
+Unbuffered code start with minus (-) at the beginning of a line (special tag) It contains javascript code, immediatly evalated, but without outputing anything
+  
+Buffered code start with an equal sign (=), it starts a ligne or is immediatly affixed to a tag specification, and the result of the expression is outputed. The output content is escaped by default. To prevent it, use hash-equal (!=)
+
+Variable expansion can occur anywhere in a text block, using brackets, ({} for escaped output, !{} for raw output)
+
+  - var n = 0, s = ''
+  - for (var i = 0; i < n; i++)  s += 'i = ' + i
+
+___________________________________________________________________________________________________________________________________
+
+Jade Syntax Highling in Sublime Text 2/3
+========================================
+  - download zip from https://github.com/miksago/jade-tmbundle
+  - save in C:\Program Files\Sublime Text x\Packages
+  - rename as 'Jade.sublime-package'
+  - restart Sublime Text
+
